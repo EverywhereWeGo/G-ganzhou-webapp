@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bfd.webappxcdc.c_dao.PersonInformationDao">
+    <select id="getPersonNum" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.PersonInformationNumVO">
+		select zdrylbbj as type , zdrylbbj_dic as type  ,count(zdrylbbj_dic) as num from fact_key_person_rylb group by zdrylbbj
+	</select>
+
+
+    <select id="getPersonDetail" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.PersonInformationDetailVO">
+        select
+          b.xm as name ,
+          b.xb_dic as sex,
+          b.csrq as birthday,
+          b.sfzh as id
+        from fact_key_person_rylb a
+        join fact_key_person b
+        where a.sfzh=b.sfzh and zdrylbbj = #{type}
+    </select>
+
+
+</mapper>
