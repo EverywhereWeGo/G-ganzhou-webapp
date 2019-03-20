@@ -2,6 +2,7 @@ package com.bfd.webappxcdc.c_dao;
 
 import com.bfd.webappxcdc.vo.SearchInformationVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,5 +14,10 @@ import java.util.List;
  */
 @Mapper
 public interface SearchInformationDao {
-	List<SearchInformationVO> getInfoByname(String value,int pageIndex);
+	List<SearchInformationVO> getInfoByname(@Param("value") String value,@Param("pageIndex") int pageIndex);
+    List<SearchInformationVO> getInfoByID(@Param("value") String value,@Param("pageIndex") int pageIndex);
+    List<SearchInformationVO> getInfoByCard(@Param("value") String value,@Param("pageIndex") int pageIndex);
+
+
+
 }

@@ -15,5 +15,5 @@ import java.util.List;
 @Mapper
 public interface AssetsInformationDao {
 	List<AssetsInformationNumVO> getNumByType();
-    List<AssetsInformationDetailVO> getAssetsdetail(String type,int pageindex);
+    List<AssetsInformationDetailVO> getAssetsdetail(String type);
 }

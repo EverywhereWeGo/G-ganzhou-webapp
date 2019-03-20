@@ -22,20 +22,22 @@ public class SearchInformationServiceImpl implements SearchInformationService {
 
 
     @Override
-    public List<SearchInformationVO> getInfo(String type ,String value,int page) {
-        int pageIndex= (page-1)*10;
-        if("name".equals(type)){
-            List<SearchInformationVO> vos = searchInformationDao.getInfoByname(value,pageIndex);
+    public List<SearchInformationVO> getInfo(String type, String value, int page) {
+        int pageIndex = (page - 1) * 10;
+        if ("name".equals(type)) {
+            List<SearchInformationVO> vos = searchInformationDao.getInfoByname(value, pageIndex);
             return vos;
+        }
+        if ("id".equals(type)) {
+            List<SearchInformationVO> vos = searchInformationDao.getInfoByID(value, pageIndex);
+            return vos;
+        }
+        if("card".equals(type)){
+            List<SearchInformationVO> vos = searchInformationDao.getInfoByCard(value, pageIndex);
+            return vos;
+
         }
         return null;
     }
-
-
-
-
-
-
-
 
 }

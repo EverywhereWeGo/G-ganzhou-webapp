@@ -22,13 +22,13 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(SearchInformationController.REQ_PATH)
-@Api(value = "PersonInformationController", description = "信息检索")
+@Api(value = "SearchInformationController", description = "信息检索")
 public class SearchInformationController {
     public static final String REQ_PATH = "/search";
     @Autowired
     private SearchInformationService searchInformationService;
 
-    @ApiOperation(value = "查询设备的数量", nickname = "getNumByType")
+    @ApiOperation(value = "查询设备的数量", nickname = "getInfoByType")
     @RequestMapping(value = "/peopleinfo", method = RequestMethod.GET)
     public ServiceResult<List<SearchInformationVO>> getAssetsnum(
             @RequestParam(name = "type", required = false) String type,

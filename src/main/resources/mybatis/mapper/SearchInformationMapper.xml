@@ -5,24 +5,38 @@
     <select id="getInfoByname" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
 		SELECT
           a.xm as name,
-          a.sfzh18 as id ,
+          a.sfzh18 as sfzh ,
           b.cph as cph
         FROM fact_key_person a
         LEFT JOIN fact_key_person_cxlb b
         ON b.sfzh=a.sfzh18
-        where a.name like '%${1}%' limit #{2} , 10
+        where a.xm like '%${value}%' limit #{pageIndex} , 10
 	</select>
 
-    <select id="getInfoByID" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
-        select
-        xm as name,
-        sfzh as sfzh,
-        xb_dic as sex,
-        zxlasj as newregistertime,
-        zdryxl_dic as type
-        from fact_key_person a
-        where a.sfzh like '%${value}%'
+    <select id="getInfoByID"  resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+        SELECT
+          a.xm as name,
+          a.sfzh18 as sfzh ,
+          b.cph as cph
+        FROM fact_key_person a
+        LEFT JOIN fact_key_person_cxlb b
+        ON b.sfzh=a.sfzh18
+        where a.sfzh18 like '%${value}%' limit #{pageIndex} , 10
     </select>
+
+
+    <select id="getInfoByCard"  resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+        SELECT
+          xm as name ,
+          sfzh as sfzh,
+          cph as cph
+        FROM
+          fact_key_person_cxlb
+        WHERE cph LIKE '%${value}%' limit #{pageIndex} , 10
+    </select>
+
+
+
 
 
 

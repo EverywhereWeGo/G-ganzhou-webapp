@@ -1,7 +1,5 @@
 package com.bfd.webappxcdc.b_service;
 
-import com.bfd.webappxcdc.vo.PersonInformationDetailVO;
-import com.bfd.webappxcdc.vo.PersonInformationNumVO;
 import com.bfd.webappxcdc.vo.SearchInformationVO;
 
 import java.util.List;
@@ -19,5 +17,6 @@ public interface SearchInformationService {
      *
      * @return 返回时间字符串
      */
-    List<SearchInformationVO> getInfo(String type ,String name,int pageindex);
+    List<SearchInformationVO> getInfo(String type, String name, int pageindex);
+
 }
