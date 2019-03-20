@@ -3,11 +3,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bfd.webappxcdc.c_dao.AssetsInformationDao">
 	<select id="getNumByType" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.AssetsInformationNumVO">
-		select data_type_code as type , data_type_code_dic as name  ,count(data_type_code) as num from dev_info group by data_type_code
+		select data_type_code as type ,
+		data_type_code_dic as name  ,
+		count(data_type_code) as num
+		from dev_info group by data_type_code
 	</select>
 	
 	<select id="getAssetsdetail" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.AssetsInformationDetailVO">
-		select data_type_code as type , dev_name as name, dev_latitude as latitude, dev_longitude as longitude,dev_address as address , curstatus as status
+		select data_type_code as type ,
+		dev_name as name,
+		dev_latitude as latitude,
+		dev_longitude as longitude,
+		dev_address as address ,
+		curstatus as status
 		from dev_info where data_type_code = #{type}
 	</select>
 	

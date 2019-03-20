@@ -29,13 +29,13 @@ public class PersonInformationController {
     @Autowired
     private PersonInformationService personInformationService;
 
-    @ApiOperation(value = "查询设备的数量", nickname = "getPersonNum")
+    @ApiOperation(value = "查询人员的数量", nickname = "getPersonNum")
     @RequestMapping(value = "/personnum", method = RequestMethod.GET)
     public ServiceResult<List<PersonInformationNumVO>> getPersonNum() {
         return new ServiceResult<List<PersonInformationNumVO>>(personInformationService.getPersonNum());
     }
 
-    @ApiOperation(value = "查询设备详情", nickname = "getPersondetail")
+    @ApiOperation(value = "查询人员详情", nickname = "getPersondetail")
     @RequestMapping(value = "/persondetail", method = RequestMethod.GET)
     public ServiceResult<List<PersonInformationDetailVO>> getPersondetail(@RequestParam(name = "type", required = false) String type) {
         return new ServiceResult<List<PersonInformationDetailVO>>(personInformationService.getPersonDetail(type));

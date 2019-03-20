@@ -13,7 +13,7 @@
         where a.xm like '%${value}%' limit #{pageIndex} , 10
 	</select>
 
-    <select id="getInfoByID"  resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+    <select id="getInfoByID" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
         SELECT
           a.xm as name,
           a.sfzh18 as sfzh ,
@@ -25,7 +25,7 @@
     </select>
 
 
-    <select id="getInfoByCard"  resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+    <select id="getInfoByCard" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
         SELECT
           xm as name ,
           sfzh as sfzh,
@@ -36,10 +36,41 @@
     </select>
 
 
+    <select id="getArchiesPeopleInfo" resultType="com.bfd.webappxcdc.vo.ArchivesPeopleVO">
+        SELECT
+        xm as name ,
+        sfzh as sfzh,
+        jzdxz as address
+        FROM
+        fact_key_person
+        WHERE sfzh = #{id}
+    </select>
+    <select id="getArchiesCarInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCarVO">
+        SELECT
+        concat("赣",hphm) as platelicense,
+        cllx_dic as model,
+        csys_dic as colors
+        FROM
+        fact_key_vehicle_info
+        WHERE sfzmhm = #{id}
+    </select>
+    <select id="getArchiesCaseInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCaseVO">
 
+    </select>
 
+    <select id="getArchiesRelationInfo" resultType="com.bfd.webappxcdc.vo.ArchivesRelationVO">
+        select
+            key_person_name as name,
+            rel_person_name as relname,
+            rel_person_idcard as relid,
+            num as times,
+            rel_type as type
+        from
+            key_person_same_train_hotel
+        where
+            key_person_idcard = #{id}
 
-
+    </select>
 
 
 </mapper>

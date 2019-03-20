@@ -4,7 +4,12 @@
 <mapper namespace="com.bfd.webappxcdc.c_dao.PersonInformationDao">
     <select id="getPersonNum" parameterType="java.lang.String"
             resultType="com.bfd.webappxcdc.vo.PersonInformationNumVO">
-		select zdrylbbj_dic as name , zdrylbbj as type  ,count(zdrylbbj_dic) as num from fact_key_person_rylb group by zdrylbbj
+		select
+		    zdrylbbj_dic as name ,
+		    zdrylbbj as type  ,
+		    count(zdrylbbj_dic) as num
+		    from fact_key_person_rylb
+		    group by zdrylbbj
 	</select>
 
 
