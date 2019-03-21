@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bfd.webappxcdc.c_dao.TrajectoryNowDao">
+	<select id="getTrajectnNow" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.TrajectoryNowVO">
+        select
+        card_code as id,
+        cur_col_time as time,
+        cur_latutude as latutude,
+        cur_longitude as longitude
+        from
+        fact_person_position_new
+        where
+        card_code=#{id}
+	</select>
+
+    <select id="getChartNum" parameterType="java.lang.String"
+            resultType="com.bfd.webappxcdc.vo.PersonThermodynamicChartVO">
+        SELECT idcard,roadcode,e_jd as jd,e_wd as wd ,pass_num as
+        passnum FROM dw_keyperson_hotmap WHERE idcard=#{hm}
+    </select>
+
+</mapper>

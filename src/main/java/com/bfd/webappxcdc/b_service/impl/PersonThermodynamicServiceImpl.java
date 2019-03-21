@@ -26,12 +26,7 @@ public class PersonThermodynamicServiceImpl implements
 	@Autowired
 	private PersonThermodynamicDao personThermodynamicDao;
 
-	@Override
-	public List<PersonThermodynamicChartVO> getChartNum(String hm) {
 
-		return personThermodynamicDao.getChartNum(hm);
-
-	}
 
 	@Override
 	public List<CarActivityVO> getCarActivity() {

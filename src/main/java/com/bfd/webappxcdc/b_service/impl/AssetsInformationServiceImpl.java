@@ -9,27 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * DailySalesVolumeService的实现类.
- *
- * @author wangzhongcheng
- * @Date 2018/12/4 15:55
- */
 @Service(value = "AssetsInformationService")
 public class AssetsInformationServiceImpl implements AssetsInformationService {
-
-    /**
-     * 自动注入Dao对象
-     */
     @Autowired
     private AssetsInformationDao assetsInformationDao;
 
   
-    /**
-     * 获取最新更新数据的时间.
-     *
-     * @return 返回时间字符串
-     */
     @Override
     public List<AssetsInformationNumVO> getNumByType() {
 

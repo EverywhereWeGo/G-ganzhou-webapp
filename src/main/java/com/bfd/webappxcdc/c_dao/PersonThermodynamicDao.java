@@ -33,15 +33,7 @@ import com.bfd.webappxcdc.vo.PersonThermodynamicChartVO;
  */
 @Mapper
 public interface PersonThermodynamicDao {
-	/**
-	 * 
-	 * getChartNum:(根据证件号码获取人员热力分布)
-	 * 
-	 * @param  @param hm  证件号码
-	 * @param  @return    List
-	 * @return List<PersonThermodynamicChart>    DOM对象
-	 */
-	List<PersonThermodynamicChartVO> getChartNum(String hm);
+
 	/**
 	 * 
 	 * getCarActivity:(獲取24小時內的車輛活躍度)

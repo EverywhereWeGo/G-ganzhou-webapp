@@ -14,12 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-/**
- * 资产信息控制器层.
- *
- * @author wanghchong
- * @Date 2019/03/19 17:50
- */
 @RestController
 @RequestMapping(SearchInformationController.REQ_PATH)
 @Api(value = "SearchInformationController", description = "信息检索")

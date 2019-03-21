@@ -19,7 +19,7 @@ import com.bfd.webappxcdc.vo.PersonThermodynamicChartVO;
 
 public interface PersonThermodynamicService {
 	
-	List<PersonThermodynamicChartVO> getChartNum(String hm);
+
 	
 	List<CarActivityVO> getCarActivity();
 	

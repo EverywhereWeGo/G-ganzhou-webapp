@@ -18,15 +18,6 @@ import com.bfd.webappxcdc.vo.CarActivityVO;
 import com.bfd.webappxcdc.vo.PersonActivityVO;
 import com.bfd.webappxcdc.vo.PersonThermodynamicChartVO;
 
-/**
- * ClassName:PersonThermodynamicController describe
- *
- * @author lenovo
- * @version
- * @since Ver 1.1
- * @Date 2019年3月20日 上午10:25:46
- *
- */
 @RestController
 @RequestMapping(PersonThermodynamicController.REQ_PATH)
 @Api(value = "PersonThermodynamicController的相关api", description = "人员历史轨迹热力分布")
@@ -36,12 +27,7 @@ public class PersonThermodynamicController {
 	@Autowired
 	private PersonThermodynamicService personThermodynamicService;
 	
-	@ApiOperation(value = "查询热力图数据", nickname = "getChartNum")
-    @RequestMapping(value = "/persionThermodynamic", method = RequestMethod.GET)
-    public ServiceResult<List<PersonThermodynamicChartVO>> getChartNum(@RequestParam(name = "hm", required = false) String hm){
-		return new ServiceResult<List<PersonThermodynamicChartVO>>( personThermodynamicService.getChartNum(hm));
-		
-	}
+
 	
 	@ApiOperation(value = "查询车辆活跃度", nickname = "getCarActivity")
     @RequestMapping(value = "/CarActivity", method = RequestMethod.GET)

@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * SearchInformationServiceImpl.
- *
- * @author wangzhongcheng
- * @Date 2018/12/4 15:55
- */
 @Service(value = "SearchInformationServiceImpl")
 public class SearchInformationServiceImpl implements SearchInformationService {
 
