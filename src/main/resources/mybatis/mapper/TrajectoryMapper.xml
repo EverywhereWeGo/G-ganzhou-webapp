@@ -4,9 +4,10 @@
 <mapper namespace="com.bfd.webappxcdc.c_dao.TrajectoryNowDao">
 	<select id="getTrajectnNow" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.TrajectoryNowVO">
         select
+        xm as name,
         card_code as id,
         cur_col_time as time,
-        cur_latutude as latutude,
+        cur_latitude as latitude,
         cur_longitude as longitude
         from
         fact_person_position_new
@@ -14,10 +15,20 @@
         card_code=#{id}
 	</select>
 
+    <select id="isKeyPerson" parameterType="java.lang.String" resultType="java.lang.String">
+        select
+        xm
+        from
+        fact_key_person
+        where
+        sfzh=#{id}
+    </select>
+
+
+
     <select id="getChartNum" parameterType="java.lang.String"
             resultType="com.bfd.webappxcdc.vo.PersonThermodynamicChartVO">
-        SELECT idcard,roadcode,e_jd as jd,e_wd as wd ,pass_num as
-        passnum FROM dw_keyperson_hotmap WHERE idcard=#{hm}
+        SELECT sfzh as sfzh ,sbbh as sbbh,longitude as longitude,latitude as latitude ,pass_num as passnum FROM model_key_person_hotmap WHERE sfzh=#{hm}
     </select>
 
 </mapper>

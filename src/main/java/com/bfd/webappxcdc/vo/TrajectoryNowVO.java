@@ -14,18 +14,28 @@ public class TrajectoryNowVO {
     private String longitude;
 
     @ApiModelProperty(value = "经度", required = true)
-    private String latutude;
-
+    private String latitude;
 
     @ApiModelProperty(value = "时间", required = true)
     private String time;
 
-    public String getLatutude() {
-        return latutude;
+    @ApiModelProperty(value = "是否重点人", required = true)
+    private String key;
+
+    public String getKey() {
+        return key;
     }
 
-    public void setLatutude(String latutude) {
-        this.latutude = latutude;
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public String getName() {

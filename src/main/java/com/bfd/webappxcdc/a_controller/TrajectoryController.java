@@ -26,7 +26,7 @@ public class TrajectoryController {
 
     @ApiOperation(value = "查询当前位置", nickname = "getHistorytrajectory")
     @RequestMapping(value = "/now", method = RequestMethod.GET)
-    public ServiceResult<List<TrajectoryNowVO>> getHistorytrajectory(@RequestParam(name = "type", required = false) String id) {
+    public ServiceResult<List<TrajectoryNowVO>> getHistorytrajectory(@RequestParam(name = "id", required = false) String id) {
         return new ServiceResult<List<TrajectoryNowVO>>(trajectoryService.getHistorytrajectory(id));
     }
     @ApiOperation(value = "查询热力图数据", nickname = "getChartNum")

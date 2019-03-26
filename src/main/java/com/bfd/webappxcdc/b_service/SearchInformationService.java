@@ -7,9 +7,12 @@ import java.util.List;
 
 public interface SearchInformationService {
 
-    List<SearchInformationVO> getInfo(String type, String name, int pageindex);
+    SearchResultVO getInfo(String type, String name, int pageindex,int pagesize);
     List<ArchivesPeopleVO> getArchivesPeopleInfo(@Param("id") String value);
     List<ArchivesCarVO> getArchivesCarInfo(@Param("id") String value);
+    List<ArchivesCarVO> getArchiesRfidInfo(@Param("id") String value);
+
     List<ArchivesCaseVO> getArchivesCaseInfo(@Param("id") String value);
     List<ArchivesRelationVO> getArchivesRelationInfo(@Param("id") String value);
+
 }

@@ -16,23 +16,35 @@ public class SearchInformationServiceImpl implements SearchInformationService {
 
 
     @Override
-    public List<SearchInformationVO> getInfo(String type, String value, int page) {
-        int pageIndex = (page - 1) * 10;
+    public SearchResultVO getInfo(String type, String value, int page, int pagesize) {
+
+        SearchResultVO srvo= new SearchResultVO();
+
+        String counts = searchInformationDao.getCountNum(type,value);
+        int pages = (Integer.parseInt(counts) +pagesize - 1) / pagesize;
+        int pageIndex = (page - 1) * pagesize;
+        srvo.setPages(pages);
+
+        List<SearchInformationVO> vos = null;
         if ("name".equals(type)) {
-            List<SearchInformationVO> vos = searchInformationDao.getInfoByname(value, pageIndex);
-            return vos;
+            vos = searchInformationDao.getInfoByname(value, pageIndex, pagesize);
         }
         if ("id".equals(type)) {
-            List<SearchInformationVO> vos = searchInformationDao.getInfoByID(value, pageIndex);
-            return vos;
+             vos = searchInformationDao.getInfoByID(value, pageIndex, pagesize);
         }
         if ("card".equals(type)) {
-            List<SearchInformationVO> vos = searchInformationDao.getInfoByCard(value, pageIndex);
-            return vos;
-
+             vos = searchInformationDao.getInfoByCard(value, pageIndex, pagesize);
         }
-        return null;
+        if ("rfid".equals(type)) {
+            vos = searchInformationDao.getInfoByRfid(value, pageIndex, pagesize);
+        }
+        srvo.setResultlist(vos);
+
+
+
+        return srvo;
     }
+
 
     public List<ArchivesPeopleVO> getArchivesPeopleInfo(String id) {
         List<ArchivesPeopleVO> vo = searchInformationDao.getArchiesPeopleInfo(id);
@@ -42,7 +54,13 @@ public class SearchInformationServiceImpl implements SearchInformationService {
     @Override
     public List<ArchivesCarVO> getArchivesCarInfo(String id) {
 
-    List<ArchivesCarVO> vo = searchInformationDao.getArchiesCarInfo(id);
+        List<ArchivesCarVO> vo = searchInformationDao.getArchiesCarInfo(id);
+        return vo;
+    }
+
+    @Override
+    public List<ArchivesCarVO> getArchiesRfidInfo(String id) {
+        List<ArchivesCarVO> vo = searchInformationDao.getArchiesRfidInfo(id);
         return vo;
     }
 

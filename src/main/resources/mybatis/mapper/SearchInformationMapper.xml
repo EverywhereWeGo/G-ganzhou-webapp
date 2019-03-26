@@ -10,7 +10,7 @@
         FROM fact_key_person a
         LEFT JOIN fact_key_person_cxlb b
         ON b.sfzh=a.sfzh18
-        where a.xm like '%${value}%' limit #{pageIndex} , 10
+        where a.xm like '%${value}%' limit #{pageIndex} , #{pagesize}
 	</select>
 
     <select id="getInfoByID" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
@@ -21,18 +21,56 @@
         FROM fact_key_person a
         LEFT JOIN fact_key_person_cxlb b
         ON b.sfzh=a.sfzh18
-        where a.sfzh18 like '%${value}%' limit #{pageIndex} , 10
+        where a.sfzh18 like '%${value}%' limit #{pageIndex} , #{pagesize}
     </select>
 
 
     <select id="getInfoByCard" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
-        SELECT
-          xm as name ,
-          sfzh as sfzh,
-          cph as cph
-        FROM
-          fact_key_person_cxlb
-        WHERE cph LIKE '%${value}%' limit #{pageIndex} , 10
+        select sfzmhm as sfzh,
+                syr as name ,
+                concat("赣",hphm) as cph
+        from  fact_key_vehicle_info
+        where concat("赣",hphm)
+        like '%${value}%' limit #{pageIndex} , #{pagesize}
+    </select>
+
+    <select id="getInfoByRfid" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+        select sfzh as sfzh,
+        xm as name ,
+        fdbm as cph
+        from  fact_key_lcdjdwxx_info
+        where fdbm
+        like '%${value}%' limit #{pageIndex} , #{pagesize}
+    </select>
+
+
+
+
+    <select id="getCountNum" resultType="java.lang.String">
+        select count(*) from
+        <if test="type == 'name'">
+            fact_key_person a
+            LEFT JOIN fact_key_person_cxlb b
+            ON b.sfzh=a.sfzh18
+            where a.xm like '%${value}%'
+
+        </if>
+        <if test="type == 'id'">
+            fact_key_person a
+            LEFT JOIN fact_key_person_cxlb b
+            ON b.sfzh=a.sfzh18
+            where a.sfzh18 like '%${value}%'
+        </if>
+        <if test="type == 'card'">
+            fact_key_vehicle_info
+            where concat("赣",hphm)
+            like '%${value}%'
+        </if>
+        <if test="type == 'rfid'">
+            fact_key_lcdjdwxx_info
+            where fdbm
+            like '%${value}%'
+        </if>
     </select>
 
 
@@ -41,6 +79,10 @@
         xm as name ,
         sfzh as sfzh,
         jzdxz as address
+        xb_dic as sex,
+        csrq as csrq,
+        mz_dic as mz,
+        zdryxl_dic as zdryxl
         FROM
         fact_key_person
         WHERE sfzh = #{id}
@@ -54,8 +96,23 @@
         fact_key_vehicle_info
         WHERE sfzmhm = #{id}
     </select>
+    <select id="getArchiesRfidInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCarVO">
+        SELECT
+        fdbm as platelicense,
+        clpp as model,
+        ys as colors
+        FROM
+        fact_key_lcdjdwxx_info
+        WHERE sfzh = #{id}
+    </select>
     <select id="getArchiesCaseInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCaseVO">
-
+          select sfzh as sfzh ,
+          case_code as code,
+          case_start_date as start,
+          case_end_date as end ,
+          case_type as type,
+          case_state as state
+          from fact_key_case_register where sfzh = #{id}
     </select>
 
     <select id="getArchiesRelationInfo" resultType="com.bfd.webappxcdc.vo.ArchivesRelationVO">
@@ -69,7 +126,6 @@
             key_person_same_train_hotel
         where
             key_person_idcard = #{id}
-
     </select>
 
 

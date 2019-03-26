@@ -10,5 +10,6 @@ import java.util.List;
 @Mapper
 public interface TrajectoryNowDao {
 	List<TrajectoryNowVO> getTrajectnNow(@Param("id") String id);
+    String isKeyPerson(@Param("id") String id);
     List<PersonThermodynamicChartVO> getChartNum(String hm);
 }

@@ -25,56 +25,55 @@ package com.bfd.webappxcdc.vo;
 
 public class PersonThermodynamicChartVO {
 
-	private String idcard;// 身份证号
+	private String passnum;
 
-	// private String platenum;
 
-	private String roadcode;// 车牌号
+	private String sfzh;
 
-	private String jd;// 精度
+	private String sbbh;
 
-	private String wd;// 維度
+	private String longitude;
 
-	private String passnum;// 通過次數
+	private String latitude;
 
-	public String getIdcard() {
-		return idcard;
-	}
 
-	public void setIdcard(String idcard) {
-		this.idcard = idcard;
-	}
+    public String getPassnum() {
+        return passnum;
+    }
 
-	public String getRoadcode() {
-		return roadcode;
-	}
+    public void setPassnum(String passnum) {
+        this.passnum = passnum;
+    }
 
-	public void setRoadcode(String roadcode) {
-		this.roadcode = roadcode;
-	}
+    public String getSfzh() {
+        return sfzh;
+    }
 
-	public String getJd() {
-		return jd;
-	}
+    public void setSfzh(String sfzh) {
+        this.sfzh = sfzh;
+    }
 
-	public void setJd(String jd) {
-		this.jd = jd;
-	}
+    public String getSbbh() {
+        return sbbh;
+    }
 
-	public String getWd() {
-		return wd;
-	}
+    public void setSbbh(String sbbh) {
+        this.sbbh = sbbh;
+    }
 
-	public void setWd(String wd) {
-		this.wd = wd;
-	}
+    public String getLongitude() {
+        return longitude;
+    }
 
-	public String getPassnum() {
-		return passnum;
-	}
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
-	public void setPassnum(String passnum) {
-		this.passnum = passnum;
-	}
+    public String getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 }

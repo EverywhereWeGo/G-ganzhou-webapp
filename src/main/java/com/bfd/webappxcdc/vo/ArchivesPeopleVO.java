@@ -12,6 +12,29 @@ public class ArchivesPeopleVO {
     @ApiModelProperty(value = "住址", required = true)
     private String address;
 
+
+
+
+
+    @ApiModelProperty(value = "性别", required = true)
+    private String sex;
+
+
+    @ApiModelProperty(value = "出生日期", required = true)
+    private String csrq;
+    @ApiModelProperty(value = "民族", required = true)
+    private String mz;
+
+    @ApiModelProperty(value = "重点人员细类", required = true)
+    private String zdryxl;
+
+
+
+
+
+
+
+
     public String getName() {
         return name;
     }

@@ -7,22 +7,23 @@ public class PersonInformationDetailVO {
     @ApiModelProperty(value = "姓名", required = true)
     private String name;
 
-    @ApiModelProperty(value = "性别", required = true)
-    private String sex;
+    @ApiModelProperty(value = "身份证", required = true)
+    private String id;
 
 
-	@ApiModelProperty(value = "生日", required = true)
-	private String birthday;
+	@ApiModelProperty(value = "地址", required = true)
+	private String address;
 
-	@ApiModelProperty(value = "身份证", required = true)
-	private String id;
+
+
+    @ApiModelProperty(value = "维度", required = true)
+    private String latitude;
 
     @ApiModelProperty(value = "经度", required = true)
     private String longitude;
+    @ApiModelProperty(value = "是否重点人", required = true)
+    private String key;
 
-
-    @ApiModelProperty(value = "纬度", required = true)
-    private String latitude;
 
     public String getName() {
         return name;
@@ -30,22 +31,6 @@ public class PersonInformationDetailVO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
     }
 
     public String getId() {
@@ -56,12 +41,12 @@ public class PersonInformationDetailVO {
         this.id = id;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getLatitude() {
@@ -70,5 +55,13 @@ public class PersonInformationDetailVO {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }
