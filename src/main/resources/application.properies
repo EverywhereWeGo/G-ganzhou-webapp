@@ -1,4 +1,4 @@
-    #"关闭缓存, 即时刷新"
+#"关闭缓存, 即时刷新"
 #spring.freemarker.cache=false
 #spring.thymeleaf.cache=true  如果开启此处会导致每次输入删除都会自动刷新哪怕你没保存
  
@@ -8,3 +8,7 @@ spring.devtools.restart.enabled=true
 spring.devtools.restart.additional-paths=src/main/java
  
 spring.devtools.restart.exclude=WEB-INF/**
+
+
+
+

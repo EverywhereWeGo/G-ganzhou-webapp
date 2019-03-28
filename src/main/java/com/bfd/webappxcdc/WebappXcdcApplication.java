@@ -1,14 +1,14 @@
 package com.bfd.webappxcdc;
 
 import com.bfd.webappxcdc.filter.CorsFilter;
-
-import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**

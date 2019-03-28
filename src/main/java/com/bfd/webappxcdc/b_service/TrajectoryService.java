@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TrajectoryService {
 
-    List<TrajectoryNowVO> getHistorytrajectory(@Param("id") String id);
+    List<TrajectoryNowVO> getTrajectnNow(@Param("id") String id);
+    List<TrajectoryHistoryVO> getTrajectnHistory(String id , String starttime, String endtime);
     List<PersonThermodynamicChartVO> getChartNum(String hm);
 }

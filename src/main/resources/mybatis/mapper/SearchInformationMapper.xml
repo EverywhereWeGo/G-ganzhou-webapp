@@ -3,32 +3,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bfd.webappxcdc.c_dao.SearchInformationDao">
     <select id="getInfoByname" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
-		SELECT
-          a.xm as name,
-          a.sfzh18 as sfzh ,
-          b.cph as cph
-        FROM fact_key_person a
-        LEFT JOIN fact_key_person_cxlb b
-        ON b.sfzh=a.sfzh18
-        where a.xm like '%${value}%' limit #{pageIndex} , #{pagesize}
-	</select>
+	SELECT
+         b.xm as name,
+         b.sfzh as sfzh ,
+         c.cph as cph
+       from (select distinct xm,sfzh from fact_key_person_rylb) b
+       left join fact_key_person_cxlb c
+       on b.sfzh=c.sfzh
+       where b.xm like '%${value}%' limit #{pageIndex} , #{pagesize}
+    </select>
 
     <select id="getInfoByID" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
         SELECT
-          a.xm as name,
-          a.sfzh18 as sfzh ,
-          b.cph as cph
-        FROM fact_key_person a
-        LEFT JOIN fact_key_person_cxlb b
-        ON b.sfzh=a.sfzh18
-        where a.sfzh18 like '%${value}%' limit #{pageIndex} , #{pagesize}
+        b.xm as name,
+        b.sfzh as sfzh ,
+        c.cph as cph
+        from (select distinct xm,sfzh from fact_key_person_rylb) b
+        left join fact_key_person_cxlb c
+        on b.sfzh=c.sfzh
+        where b.sfzh like '%${value}%' limit #{pageIndex} , #{pagesize}
     </select>
 
 
     <select id="getInfoByCard" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
         select sfzmhm as sfzh,
-                syr as name ,
-                concat("赣",hphm) as cph
+        syr as name ,
+        concat("赣",hphm) as cph
         from  fact_key_vehicle_info
         where concat("赣",hphm)
         like '%${value}%' limit #{pageIndex} , #{pagesize}
@@ -46,20 +46,21 @@
 
 
 
+
     <select id="getCountNum" resultType="java.lang.String">
         select count(*) from
         <if test="type == 'name'">
-            fact_key_person a
-            LEFT JOIN fact_key_person_cxlb b
-            ON b.sfzh=a.sfzh18
-            where a.xm like '%${value}%'
+            (select distinct xm,sfzh from fact_key_person_rylb) b
+            LEFT JOIN fact_key_person_cxlb c
+            ON b.sfzh=c.sfzh
+            where b.xm like '%${value}%'
 
         </if>
         <if test="type == 'id'">
-            fact_key_person a
-            LEFT JOIN fact_key_person_cxlb b
-            ON b.sfzh=a.sfzh18
-            where a.sfzh18 like '%${value}%'
+            (select distinct xm,sfzh from fact_key_person_rylb) b
+            LEFT JOIN fact_key_person_cxlb c
+            ON b.sfzh=c.sfzh
+            where b.sfzh like '%${value}%'
         </if>
         <if test="type == 'card'">
             fact_key_vehicle_info
@@ -78,7 +79,7 @@
         SELECT
         xm as name ,
         sfzh as sfzh,
-        jzdxz as address
+        jzdxz as address,
         xb_dic as sex,
         csrq as csrq,
         mz_dic as mz,

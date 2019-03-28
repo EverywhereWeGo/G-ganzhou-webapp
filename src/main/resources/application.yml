@@ -5,9 +5,14 @@ spring:
   datasource:
     name: test
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://172.24.4.58:3306/gzga_data?useUnicode=true&characterEncoding=utf-8
+#    url: jdbc:mysql://172.24.4.58:3306/gzga_data?useUnicode=true&characterEncoding=utf-8
+#    username: root
+#    password: root
+
+    url: jdbc:mysql://10.138.85.57:3306/gzga_data?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: root
+    password: gzgaroot
+
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
@@ -27,5 +32,8 @@ mybatis:
   mapper-locations: classpath*:mybatis/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+
+
     
 

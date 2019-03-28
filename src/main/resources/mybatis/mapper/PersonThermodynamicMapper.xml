@@ -2,21 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bfd.webappxcdc.c_dao.PersonThermodynamicDao">
-	<select id="getCarActivity" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.CarActivityVO">
-		SELECT t1.h AS rq,t1.num AS cnum,t2.num AS bnum FROM(
-		SELECT num,CONCAT(tjrq,' ',tjsj)AS h FROM `fact_key_vehicle_active`
-		WHERE num_type='B' AND CONCAT(tjrq,' ',tjsj)&gt;=SUBSTR((NOW() - INTERVAL 24
-		HOUR),1,13)AND CONCAT(tjrq,'-',tjsj)&lt;=SUBSTR(NOW(),1,13)
-		)t1
-		LEFT JOIN
-		(SELECT num,CONCAT(tjrq,' ',tjsj)AS h FROM `fact_key_vehicle_active`
-		WHERE num_type='C' AND CONCAT(tjrq,' ',tjsj)&gt;=SUBSTR((NOW() - INTERVAL 24
-		HOUR),1,13) AND CONCAT(tjrq,'-',tjsj)&lt;=SUBSTR(NOW(),1,13)
-		)t2 ON t1.h=t2.h
-		ORDER BY t1.h
+    <select id="getCarActivity" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.CarActivityVO">
+		SELECT  t1.h as rq,t1.num AS c_num,t2.num AS b_num FROM
+              (SELECT num,CONCAT(tjrq,tjsj)AS h FROM fact_key_vehicle_active
+              WHERE num_type='C' AND CONCAT(tjrq,tjsj)>DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 10 HOUR),'%Y%m%d%H')
+              )t1
+              LEFT JOIN
+              (SELECT num,CONCAT(tjrq,tjsj)AS h FROM fact_key_vehicle_active
+              WHERE num_type='B' AND CONCAT(tjrq,tjsj)>DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 10 HOUR),'%Y%m%d%H')
+              )t2
+              ON t1.h=t2.h
+              ORDER BY t1.h
 	</select>
-	<select id="getPersonActivity" parameterType="java.lang.String"
-		resultType="com.bfd.webappxcdc.vo.PersonActivityVO">
+    <select id="getPersonActivity" parameterType="java.lang.String"
+            resultType="com.bfd.webappxcdc.vo.PersonActivityVO">
 		SELECT num,tjrq FROM fact_key_person_active ORDER BY tjrq
 		DESC LIMIT 10
 	</select>

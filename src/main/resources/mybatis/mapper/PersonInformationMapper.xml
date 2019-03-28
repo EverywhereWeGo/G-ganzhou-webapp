@@ -20,17 +20,19 @@
 	c.card_code as id ,
 	c.cur_dev_name as address,
 	c.cur_longitude as longitude,
-	c.cur_latitude as latitude
-FROM
-	fact_key_person a
-	LEFT JOIN ( SELECT sfzh FROM fact_key_person_rylb WHERE zdrylbbj = #{type} ) b ON a.sfzh18 = b.sfzh
-	LEFT JOIN fact_person_position_new c ON a.sfzh18 = c.card_code
+	c.cur_latitude as latitude,
+	c.cur_col_time as lasttime
+FROM fact_person_position_new c
+ join
+fact_key_person_rylb b
+on b.sfzh=c.card_code
 WHERE
 	b.sfzh IS NOT NULL
 	AND c.card_code IS NOT NULL
 	AND cur_col_locale IS NOT NULL
 	AND c.cur_longitude IS NOT NULL
 	AND c.cur_latitude IS NOT NULL
+  AND zdrylbbj = #{type}
 
 
     </select>

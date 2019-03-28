@@ -21,6 +21,26 @@ public class PersonInformationDetailVO {
 
     @ApiModelProperty(value = "经度", required = true)
     private String longitude;
+
+    @ApiModelProperty(value = "时间", required = true)
+    private String lasttime;
+
+    public String getLasttime() {
+        return lasttime;
+    }
+
+    public void setLasttime(String lasttime) {
+        this.lasttime = lasttime;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     @ApiModelProperty(value = "是否重点人", required = true)
     private String key;
 

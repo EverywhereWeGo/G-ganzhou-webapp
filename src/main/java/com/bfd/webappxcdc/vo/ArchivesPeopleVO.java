@@ -13,9 +13,6 @@ public class ArchivesPeopleVO {
     private String address;
 
 
-
-
-
     @ApiModelProperty(value = "性别", required = true)
     private String sex;
 
@@ -29,11 +26,37 @@ public class ArchivesPeopleVO {
     private String zdryxl;
 
 
+    public String getSex() {
+        return sex;
+    }
 
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
+    public String getCsrq() {
+        return csrq;
+    }
 
+    public void setCsrq(String csrq) {
+        this.csrq = csrq;
+    }
 
+    public String getMz() {
+        return mz;
+    }
 
+    public void setMz(String mz) {
+        this.mz = mz;
+    }
+
+    public String getZdryxl() {
+        return zdryxl;
+    }
+
+    public void setZdryxl(String zdryxl) {
+        this.zdryxl = zdryxl;
+    }
 
     public String getName() {
         return name;
