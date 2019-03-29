@@ -4,39 +4,17 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class TrajectoryHistoryVO {
 
-    @ApiModelProperty(value = "姓名", required = true)
-    private String name;
-
     @ApiModelProperty(value = "身份证号", required = true)
     private String id;
 
     @ApiModelProperty(value = "纬度", required = true)
-    private String longitude;
+    private String latitude;
 
     @ApiModelProperty(value = "经度", required = true)
-    private String latitude;
+    private String longitude;
 
     @ApiModelProperty(value = "时间", required = true)
     private String time;
-
-
-
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getId() {
         return id;
@@ -44,6 +22,14 @@ public class TrajectoryHistoryVO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public String getLongitude() {

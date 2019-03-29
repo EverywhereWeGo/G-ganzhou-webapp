@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.List;
 
 
@@ -34,7 +35,7 @@ public class TrajectoryController {
     @RequestMapping(value = "/history", method = RequestMethod.GET)
     public ServiceResult<List<TrajectoryHistoryVO>> getTrajectnHistory(@RequestParam(name = "id", required = false) String id,
                                    @RequestParam(name = "starttime", required = false) String starttime,
-                                   @RequestParam(name = "endtime", required = false) String endtime) {
+                                   @RequestParam(name = "endtime", required = false) String endtime) throws ParseException {
         return new ServiceResult<List<TrajectoryHistoryVO>>(trajectoryService.getTrajectnHistory(id, starttime, endtime));
     }
 

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
+
 /**
  * 全局异常处理
  *
@@ -50,4 +52,20 @@ public class GlobalExceptionHandler {
         serviceResult.setCode(BizExceptionEnum.SYS_EXCEPTION.getErrorCode());
         return serviceResult;
     }
+
+    /**
+     * 拦截捕捉异常 ParseException.class
+     */
+    @ResponseBody
+    @ExceptionHandler(value = ParseException.class)
+    public ServiceResult errorHandler(ParseException e) {
+        logger.error("业务异常 errorMsg={}", e.toString());
+        logger.error("错误信息", e);
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setMsg("日期转换错误");
+        serviceResult.setCode(BizExceptionEnum.SYS_EXCEPTION.getErrorCode());
+        return serviceResult;
+    }
+
+
 }
