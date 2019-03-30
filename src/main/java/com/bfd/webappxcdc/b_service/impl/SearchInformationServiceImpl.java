@@ -18,10 +18,10 @@ public class SearchInformationServiceImpl implements SearchInformationService {
     @Override
     public SearchResultVO getInfo(String type, String value, int page, int pagesize) {
 
-        SearchResultVO srvo= new SearchResultVO();
+        SearchResultVO srvo = new SearchResultVO();
 
-        String counts = searchInformationDao.getCountNum(type,value);
-        int pages = (Integer.parseInt(counts) +pagesize - 1) / pagesize;
+        String counts = searchInformationDao.getCountNum(type, value);
+        int pages = (Integer.parseInt(counts) + pagesize - 1) / pagesize;
         int pageIndex = (page - 1) * pagesize;
         srvo.setPages(pages);
 
@@ -30,10 +30,10 @@ public class SearchInformationServiceImpl implements SearchInformationService {
             vos = searchInformationDao.getInfoByname(value, pageIndex, pagesize);
         }
         if ("id".equals(type)) {
-             vos = searchInformationDao.getInfoByID(value, pageIndex, pagesize);
+            vos = searchInformationDao.getInfoByID(value, pageIndex, pagesize);
         }
         if ("card".equals(type)) {
-             vos = searchInformationDao.getInfoByCard(value, pageIndex, pagesize);
+            vos = searchInformationDao.getInfoByCard(value, pageIndex, pagesize);
         }
         if ("rfid".equals(type)) {
             vos = searchInformationDao.getInfoByRfid(value, pageIndex, pagesize);
@@ -41,11 +41,10 @@ public class SearchInformationServiceImpl implements SearchInformationService {
         srvo.setResultlist(vos);
 
 
-
         return srvo;
     }
 
-
+    @Override
     public List<ArchivesPeopleVO> getArchivesPeopleInfo(String id) {
         List<ArchivesPeopleVO> vo = searchInformationDao.getArchiesPeopleInfo(id);
         return vo;

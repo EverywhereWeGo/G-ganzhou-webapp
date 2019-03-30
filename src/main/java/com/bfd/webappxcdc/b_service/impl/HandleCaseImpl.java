@@ -1,6 +1,5 @@
 package com.bfd.webappxcdc.b_service.impl;
 
-
 import com.bfd.webappxcdc.b_service.HandleCaseService;
 import com.bfd.webappxcdc.vo.HandleCaseVO;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -8,9 +7,11 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.metrics.tophits.TopHits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +42,17 @@ public class HandleCaseImpl implements HandleCaseService {
                 .must(QueryBuilders.geoDistanceQuery("LOCATION").point(Double.parseDouble(lat), Double.parseDouble(lon))
                         .distance(distance, DistanceUnit.MILES)));
 
-        srb.addAggregation(AggregationBuilders.terms("groups").field("ZJHM").subAggregation(AggregationBuilders.terms("types").field("SJLY")));
+//        srb.addAggregation(AggregationBuilders.terms("groups").field("ZJHM")
+//                .subAggregation(AggregationBuilders.terms("types").field("SJLY")
+//                        .subAggregation(AggregationBuilders.topHits("detail").size(1))));
+
+        srb.addAggregation(AggregationBuilders.terms("groups").field("ZJHM")
+                .subAggregation(AggregationBuilders.terms("types").field("SJLY"))
+                .subAggregation(AggregationBuilders.topHits("detail").size(1).fetchSource("RYXM", null)));
 
         SearchResponse searchResponse = srb.execute().actionGet();
 
+        System.out.println(srb.toString());
 
         Aggregations aggregations = searchResponse.getAggregations();
 
@@ -52,6 +60,7 @@ public class HandleCaseImpl implements HandleCaseService {
         Terms groups = searchResponse.getAggregations().get("groups");
         for (Terms.Bucket term : groups.getBuckets()) {
             HandleCaseVO hcvo = new HandleCaseVO();
+            //处理第一个聚合条件
             Terms types = term.getAggregations().get("types");
             Map map = new HashMap();
             for (Terms.Bucket tb : types.getBuckets()) {
@@ -61,6 +70,19 @@ public class HandleCaseImpl implements HandleCaseService {
             }
             String key = term.getKeyAsString();
             String cou = String.valueOf(term.getDocCount());
+
+            //处理第二个聚合条件
+            String RYLX = "";
+            TopHits detail = term.getAggregations().get("detail");
+            SearchHit[] hits = detail.getHits().getHits();
+            for (SearchHit hit : hits) {
+                Map<String, Object> hitmap = hit.getSource();
+                if (hitmap.containsKey("RYXM")) {
+                    RYLX = hitmap.get("RYXM").toString();
+                }
+            }
+
+            hcvo.setName(RYLX);
             hcvo.setId(key);
             hcvo.setNum(cou);
             hcvo.setTypenum(map);
@@ -82,7 +104,6 @@ public class HandleCaseImpl implements HandleCaseService {
 //        }
 //        a.client = client;
 //        a.handleCase("2019-3-27 15:53:28", "2020-01-01 01:00:00", "1000", "35.91667", "115.41667");
-//
 //
 //    }
 }

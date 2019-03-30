@@ -2,11 +2,9 @@ package com.bfd.webappxcdc.b_service.impl;
 
 import com.bfd.webappxcdc.b_service.PersonInformationService;
 import com.bfd.webappxcdc.c_dao.PersonInformationDao;
-import com.bfd.webappxcdc.c_dao.TrajectoryNowDao;
 import com.bfd.webappxcdc.vo.PersonInformationDetailVO;
 import com.bfd.webappxcdc.vo.PersonInformationNumVO;
 import com.bfd.webappxcdc.vo.SearchInformationVO;
-import com.bfd.webappxcdc.vo.TrajectoryNowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

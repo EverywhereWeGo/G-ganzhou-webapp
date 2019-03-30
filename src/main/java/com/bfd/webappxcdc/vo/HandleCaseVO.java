@@ -7,10 +7,22 @@ import java.util.Map;
 public class HandleCaseVO {
     @ApiModelProperty(value = "身份证", required = true)
     private String id;
+
+    @ApiModelProperty(value = "身份证", required = true)
+    private String name;
+
     @ApiModelProperty(value = "出现次数", required = true)
     private String num;
     @ApiModelProperty(value = "类型出现次数", required = true)
     private Map typenum;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getId() {
         return id;

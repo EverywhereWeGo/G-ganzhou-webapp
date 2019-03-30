@@ -15,27 +15,22 @@
 
     <select id="getPersonDetail" parameterType="java.lang.String"
             resultType="com.bfd.webappxcdc.vo.PersonInformationDetailVO">
-       SELECT
-	c.xm as name ,
-	c.card_code as id ,
-	c.cur_dev_name as address,
-	c.cur_longitude as longitude,
-	c.cur_latitude as latitude,
-	c.cur_col_time as lasttime
-FROM fact_person_position_new c
- join
-fact_key_person_rylb b
-on b.sfzh=c.card_code
-WHERE
-	b.sfzh IS NOT NULL
-	AND c.card_code IS NOT NULL
-	AND cur_col_locale IS NOT NULL
-	AND c.cur_longitude IS NOT NULL
-	AND c.cur_latitude IS NOT NULL
-  AND zdrylbbj = #{type}
-
-
-    </select>
-
-
+             SELECT
+        	c.xm AS NAME,
+        	c.card_code AS id,
+        	c.cur_dev_name AS address,
+        	c.cur_longitude AS longitude,
+        	c.cur_latitude AS latitude,
+        	c.cur_col_time AS lasttime
+        ROM
+        	fact_person_position_new c
+        	JOIN fact_key_person_rylb b ON b.sfzh = c.card_code
+        HERE
+        	b.sfzh IS NOT NULL
+        	AND c.card_code IS NOT NULL
+        	AND cur_col_locale IS NOT NULL
+        	AND c.cur_longitude IS NOT NULL
+        	AND c.cur_latitude IS NOT NULL
+        	AND zdrylbbj = #{type}
+     </select>
 </mapper>

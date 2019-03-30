@@ -7,12 +7,16 @@ import java.util.List;
 
 public interface SearchInformationService {
 
-    SearchResultVO getInfo(String type, String name, int pageindex,int pagesize);
-    List<ArchivesPeopleVO> getArchivesPeopleInfo(@Param("id") String value);
-    List<ArchivesCarVO> getArchivesCarInfo(@Param("id") String value);
-    List<ArchivesCarVO> getArchiesRfidInfo(@Param("id") String value);
+    public SearchResultVO getInfo(String type, String name, int pageindex, int pagesize);
 
-    List<ArchivesCaseVO> getArchivesCaseInfo(@Param("id") String value);
-    List<ArchivesRelationVO> getArchivesRelationInfo(@Param("id") String value);
+    public List<ArchivesPeopleVO> getArchivesPeopleInfo(@Param("id") String value);
+
+    public List<ArchivesCarVO> getArchivesCarInfo(@Param("id") String value);
+
+    public List<ArchivesCarVO> getArchiesRfidInfo(@Param("id") String value);
+
+    public List<ArchivesCaseVO> getArchivesCaseInfo(@Param("id") String value);
+
+    public List<ArchivesRelationVO> getArchivesRelationInfo(@Param("id") String value);
 
 }

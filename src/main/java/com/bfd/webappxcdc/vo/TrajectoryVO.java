@@ -2,7 +2,7 @@ package com.bfd.webappxcdc.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class TrajectoryNowVO {
+public class TrajectoryVO {
 
     @ApiModelProperty(value = "姓名", required = true)
     private String name;
@@ -68,5 +68,17 @@ public class TrajectoryNowVO {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "TrajectoryNowVO{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", time='" + time + '\'' +
+                ", key='" + key + '\'' +
+                '}';
     }
 }

@@ -54,7 +54,6 @@
             LEFT JOIN fact_key_person_cxlb c
             ON b.sfzh=c.sfzh
             where b.xm like '%${value}%'
-
         </if>
         <if test="type == 'id'">
             (select distinct xm,sfzh from fact_key_person_rylb) b
