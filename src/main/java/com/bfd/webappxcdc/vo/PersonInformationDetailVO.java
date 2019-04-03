@@ -15,7 +15,6 @@ public class PersonInformationDetailVO {
 	private String address;
 
 
-
     @ApiModelProperty(value = "维度", required = true)
     private String latitude;
 
@@ -23,14 +22,15 @@ public class PersonInformationDetailVO {
     private String longitude;
 
     @ApiModelProperty(value = "时间", required = true)
-    private String lasttime;
+    private String time;
 
-    public String getLasttime() {
-        return lasttime;
+
+    public String getTime() {
+        return time;
     }
 
-    public void setLasttime(String lasttime) {
-        this.lasttime = lasttime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getKey() {

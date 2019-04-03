@@ -35,5 +35,12 @@ mybatis:
 
 
 
+
+elasticsearch:
+  cluster-nodes: 172.24.4.58:9300
+  cluster-name: archive
+
+
+
     
 

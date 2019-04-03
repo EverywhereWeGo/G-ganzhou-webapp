@@ -7,6 +7,7 @@ import com.bfd.webappxcdc.vo.PersonThermodynamicChartVO;
 import com.bfd.webappxcdc.vo.TrajectoryVO;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -52,14 +53,11 @@ public class TrajectoryImpl implements TrajectoryService {
         String stime = String.valueOf(sdf.parse(starttime).getTime());
         String etime = String.valueOf(sdf.parse(endtime).getTime());
 
-        System.out.println(stime);
-        System.out.println(etime);
-
-
         SearchRequestBuilder srb = client.prepareSearch("gz_personnel_data_*")
                 .setTypes("personnel_data")
+                .setSearchType(SearchType.DFS_QUERY_AND_FETCH)
                 .setQuery(QueryBuilders.matchQuery("ZJHM", id))
-                .setFetchSource(new String[]{"ZJHM", "JD", "WD", "CJSJ", "RYLX"}, null)
+                .setFetchSource(new String[]{"ZJHM", "JD", "WD", "CJSJ", "RYLX", "RYXM","SJLY"}, null)
                 .setPostFilter(QueryBuilders.rangeQuery("CJSJ").from(stime).to(etime))
                 .addSort("CJSJ", SortOrder.DESC)
                 .setFrom(0).setSize(Integer.parseInt(size));
@@ -69,14 +67,14 @@ public class TrajectoryImpl implements TrajectoryService {
 
         SearchResponse response = srb.execute().actionGet();
 
-
         Map<String, Object> hitmap = null;
         String RYXM = "";
         String ZJHM = "";
         String JD = "";
         String WD = "";
-        String CJSJ = "";
+        long CJSJ = 0;
         String RYLX = "";
+        String SJLY = "";
 
         SearchHit[] modelLogEntity = response.getHits().getHits();
         for (SearchHit hit : modelLogEntity) {
@@ -90,15 +88,30 @@ public class TrajectoryImpl implements TrajectoryService {
             }
             if (hitmap.containsKey("JD")) {
                 JD = hitmap.get("JD").toString();
+                if("".equals(JD)){
+                    continue;
+                }
             }
             if (hitmap.containsKey("WD")) {
                 WD = hitmap.get("WD").toString();
+                if("".equals(WD)){
+                    continue;
+                }
             }
             if (hitmap.containsKey("CJSJ")) {
-                CJSJ = hitmap.get("CJSJ").toString();
+                CJSJ = Long.parseLong(hitmap.get("CJSJ").toString());
             }
             if (hitmap.containsKey("RYLX")) {
                 RYLX = hitmap.get("RYLX").toString();
+            }
+            if (hitmap.containsKey("SJLY")) {
+                SJLY = hitmap.get("SJLY").toString();
+                if("二轮车".equals(SJLY)){SJLY="B";}
+                if("过车".equals(SJLY)){SJLY="C";}
+                if("网吧".equals(SJLY)){SJLY="N";}
+                if("旅馆".equals(SJLY)){SJLY="H";}
+                if("火车".equals(SJLY)){SJLY="T";}
+                if("民航".equals(SJLY)){SJLY="P";}
             }
             thvo.setName(RYXM);
             thvo.setId(ZJHM);
@@ -106,7 +119,8 @@ public class TrajectoryImpl implements TrajectoryService {
             thvo.setLatitude(WD);
             thvo.setTime(CJSJ);
             thvo.setKey(RYLX);
-            System.out.println(thvo.toString());
+            thvo.setDatasource(SJLY);
+//            System.out.println(thvo.toString());
             thvolist.add(thvo);
         }
         return thvolist;

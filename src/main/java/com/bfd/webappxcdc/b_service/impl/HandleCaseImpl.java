@@ -40,7 +40,7 @@ public class HandleCaseImpl implements HandleCaseService {
                 .must(QueryBuilders.matchQuery("RYLX", "重点"))
                 .must(QueryBuilders.rangeQuery("CJSJ").gte(stime).lte(etime))
                 .must(QueryBuilders.geoDistanceQuery("LOCATION").point(Double.parseDouble(lat), Double.parseDouble(lon))
-                        .distance(distance, DistanceUnit.MILES)));
+                        .distance(distance,DistanceUnit.METERS)));
 
 //        srb.addAggregation(AggregationBuilders.terms("groups").field("ZJHM")
 //                .subAggregation(AggregationBuilders.terms("types").field("SJLY")
