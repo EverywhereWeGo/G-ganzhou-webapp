@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bfd.webappxcdc.c_dao.WarningInfoDao">
-	<select id="getWarningInfoList" resultType="com.bfd.webappxcdc.vo.WarningInfoVO">
+<mapper namespace="com.bfd.webappgzga.c_dao.WarningInfoDao">
+	<select id="getWarningInfoList" resultType="com.bfd.webappgzga.vo.WarningInfoVO">
 		SELECT id, model_id
 		AS modelId,model_result AS modelResult,model_name AS modelName
 		FROM model_result ORDER BY etl_date DESC LIMIT 10

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bfd.webappxcdc.c_dao.AssetsInformationDao">
-	<select id="getNumByType" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.AssetsInformationNumVO">
+<mapper namespace="com.bfd.webappgzga.c_dao.AssetsInformationDao">
+	<select id="getNumByType" parameterType="java.lang.String" resultType="com.bfd.webappgzga.vo.AssetsInformationNumVO">
 		select data_type_code as type ,
 		data_type_code_dic as name  ,
 		count(data_type_code) as num
 		from dev_info group by data_type_code
 	</select>
 	
-	<select id="getAssetsdetail" parameterType="java.lang.String" resultType="com.bfd.webappxcdc.vo.AssetsInformationDetailVO">
+	<select id="getAssetsdetail" parameterType="java.lang.String" resultType="com.bfd.webappgzga.vo.AssetsInformationDetailVO">
 		select data_type_code as type ,
 		dev_name as name,
 		dev_latitude as latitude,

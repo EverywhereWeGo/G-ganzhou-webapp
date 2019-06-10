@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bfd.webappxcdc.c_dao.SearchInformationDao">
-    <select id="getInfoByname" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+<mapper namespace="com.bfd.webappgzga.c_dao.SearchInformationDao">
+    <select id="getInfoByname" resultType="com.bfd.webappgzga.vo.SearchInformationVO">
 	SELECT
          b.xm as name,
          b.sfzh as sfzh ,
@@ -13,7 +13,7 @@
        where b.xm like '%${value}%' limit #{pageIndex} , #{pagesize}
     </select>
 
-    <select id="getInfoByID" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+    <select id="getInfoByID" resultType="com.bfd.webappgzga.vo.SearchInformationVO">
         SELECT
         b.xm as name,
         b.sfzh as sfzh ,
@@ -25,7 +25,7 @@
     </select>
 
 
-    <select id="getInfoByCard" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+    <select id="getInfoByCard" resultType="com.bfd.webappgzga.vo.SearchInformationVO">
         select sfzmhm as sfzh,
         syr as name ,
         concat("赣",hphm) as cph
@@ -34,7 +34,7 @@
         like '%${value}%' limit #{pageIndex} , #{pagesize}
     </select>
 
-    <select id="getInfoByRfid" resultType="com.bfd.webappxcdc.vo.SearchInformationVO">
+    <select id="getInfoByRfid" resultType="com.bfd.webappgzga.vo.SearchInformationVO">
         select sfzh as sfzh,
         xm as name ,
         fdbm as cph
@@ -74,7 +74,7 @@
     </select>
 
 
-    <select id="getArchiesPeopleInfo" resultType="com.bfd.webappxcdc.vo.ArchivesPeopleVO">
+    <select id="getArchiesPeopleInfo" resultType="com.bfd.webappgzga.vo.ArchivesPeopleVO">
         SELECT
         xm as name ,
         sfzh as sfzh,
@@ -87,7 +87,7 @@
         fact_key_person
         WHERE sfzh = #{id}
     </select>
-    <select id="getArchiesCarInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCarVO">
+    <select id="getArchiesCarInfo" resultType="com.bfd.webappgzga.vo.ArchivesCarVO">
         SELECT
         concat("赣",hphm) as platelicense,
         cllx_dic as model,
@@ -96,7 +96,7 @@
         fact_key_vehicle_info
         WHERE sfzmhm = #{id}
     </select>
-    <select id="getArchiesRfidInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCarVO">
+    <select id="getArchiesRfidInfo" resultType="com.bfd.webappgzga.vo.ArchivesCarVO">
         SELECT
         fdbm as platelicense,
         clpp as model,
@@ -105,7 +105,7 @@
         fact_key_lcdjdwxx_info
         WHERE sfzh = #{id}
     </select>
-    <select id="getArchiesCaseInfo" resultType="com.bfd.webappxcdc.vo.ArchivesCaseVO">
+    <select id="getArchiesCaseInfo" resultType="com.bfd.webappgzga.vo.ArchivesCaseVO">
           select sfzh as sfzh ,
           case_code as code,
           case_start_date as start,
@@ -115,7 +115,7 @@
           from fact_key_case_register where sfzh = #{id}
     </select>
 
-    <select id="getArchiesRelationInfo" resultType="com.bfd.webappxcdc.vo.ArchivesRelationVO">
+    <select id="getArchiesRelationInfo" resultType="com.bfd.webappgzga.vo.ArchivesRelationVO">
         select
             key_person_name as name,
             rel_person_name as relname,

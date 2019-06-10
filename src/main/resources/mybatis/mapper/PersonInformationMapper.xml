@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bfd.webappxcdc.c_dao.PersonInformationDao">
+<mapper namespace="com.bfd.webappgzga.c_dao.PersonInformationDao">
     <select id="getPersonNum" parameterType="java.lang.String"
-            resultType="com.bfd.webappxcdc.vo.PersonInformationNumVO">
+            resultType="com.bfd.webappgzga.vo.PersonInformationNumVO">
 		select
 		    zdrylbbj_dic as name ,
 		    zdrylbbj as type  ,
@@ -14,7 +14,7 @@
 
 
     <select id="getPersonDetail" parameterType="java.lang.String"
-            resultType="com.bfd.webappxcdc.vo.PersonInformationDetailVO">
+            resultType="com.bfd.webappgzga.vo.PersonInformationDetailVO">
         SELECT
         	c.xm AS NAME,
         	c.card_code AS id,
